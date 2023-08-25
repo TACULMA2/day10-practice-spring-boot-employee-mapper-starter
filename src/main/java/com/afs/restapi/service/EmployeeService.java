@@ -1,9 +1,10 @@
 package com.afs.restapi.service;
 
-import com.afs.restapi.dto.EmployeeReqeust;
 import com.afs.restapi.entity.Employee;
 import com.afs.restapi.exception.EmployeeNotFoundException;
 import com.afs.restapi.repository.EmployeeRepository;
+import com.afs.restapi.service.dto.EmployeeReqeust;
+import com.afs.restapi.service.dto.EmployeeResponse;
 import com.afs.restapi.service.mapper.EmployeeMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -1,4 +1,4 @@
-package com.afs.restapi.service;
+package com.afs.restapi.service.dto;
 
 public class EmployeeResponse {
     private Long id;

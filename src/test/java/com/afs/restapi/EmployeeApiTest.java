@@ -1,6 +1,6 @@
 package com.afs.restapi;
 
-import com.afs.restapi.dto.EmployeeReqeust;
+import com.afs.restapi.service.dto.EmployeeReqeust;
 import com.afs.restapi.entity.Employee;
 import com.afs.restapi.repository.EmployeeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
