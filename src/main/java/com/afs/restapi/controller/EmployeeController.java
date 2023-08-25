@@ -1,6 +1,8 @@
 package com.afs.restapi.controller;
 
+import com.afs.restapi.dto.EmployeeReqeust;
 import com.afs.restapi.entity.Employee;
+import com.afs.restapi.service.EmployeeResponse;
 import com.afs.restapi.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +48,8 @@ public class EmployeeController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeService.create(employee);
+    public EmployeeResponse createEmployee(@RequestBody EmployeeReqeust employeeReqeust) {
+        return employeeService.create(employeeReqeust);
     }
 
     @GetMapping(params = {"pageNumber", "pageSize"})

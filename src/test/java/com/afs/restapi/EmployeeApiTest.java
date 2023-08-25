@@ -1,5 +1,6 @@
 package com.afs.restapi;
 
+import com.afs.restapi.dto.EmployeeReqeust;
 import com.afs.restapi.entity.Employee;
 import com.afs.restapi.repository.EmployeeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -61,19 +62,18 @@ class EmployeeApiTest {
 
     @Test
     void should_create_employee() throws Exception {
-        Employee employee = getEmployeeBob();
-
+        EmployeeReqeust employeeReqeust = new EmployeeReqeust("Alice", 24, "Male", 8000, null);
         ObjectMapper objectMapper = new ObjectMapper();
-        String employeeRequest = objectMapper.writeValueAsString(employee);
+        String employeeRequestJSON = objectMapper.writeValueAsString(employeeReqeust);
         mockMvc.perform(post("/employees")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(employeeRequest))
+                        .content(employeeRequestJSON))
                 .andExpect(MockMvcResultMatchers.status().is(201))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(employee.getName()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.age").value(employee.getAge()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.gender").value(employee.getGender()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.salary").value(employee.getSalary()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(employeeReqeust.getName()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.age").value(employeeReqeust.getAge()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.gender").value(employeeReqeust.getGender()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.salary").doesNotExist());
     }
 
     @Test

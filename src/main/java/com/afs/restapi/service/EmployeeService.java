@@ -1,8 +1,10 @@
 package com.afs.restapi.service;
 
+import com.afs.restapi.dto.EmployeeReqeust;
 import com.afs.restapi.entity.Employee;
 import com.afs.restapi.exception.EmployeeNotFoundException;
 import com.afs.restapi.repository.EmployeeRepository;
+import com.afs.restapi.service.mapper.EmployeeMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -43,8 +45,9 @@ public class EmployeeService {
         return employeeRepository.findAllByGender(gender);
     }
 
-    public Employee create(Employee employee) {
-        return employeeRepository.save(employee);
+    public EmployeeResponse create(EmployeeReqeust employeeRequest) {
+        Employee employee = EmployeeMapper.toEntity(employeeRequest);
+        return EmployeeMapper.toResponse(employeeRepository.save(employee));
     }
 
     public List<Employee> findByPage(Integer pageNumber, Integer pageSize) {
