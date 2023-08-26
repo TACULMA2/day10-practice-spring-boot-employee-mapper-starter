@@ -3,7 +3,7 @@ package com.afs.restapi.service;
 import com.afs.restapi.entity.Employee;
 import com.afs.restapi.exception.EmployeeNotFoundException;
 import com.afs.restapi.repository.EmployeeRepository;
-import com.afs.restapi.service.dto.EmployeeReqeust;
+import com.afs.restapi.service.dto.EmployeeRequest;
 import com.afs.restapi.service.dto.EmployeeResponse;
 import com.afs.restapi.service.mapper.EmployeeMapper;
 import org.springframework.data.domain.Page;
@@ -46,7 +46,7 @@ public class EmployeeService {
         return employeeRepository.findAllByGender(gender);
     }
 
-    public EmployeeResponse create(EmployeeReqeust employeeRequest) {
+    public EmployeeResponse create(EmployeeRequest employeeRequest) {
         Employee employee = EmployeeMapper.toEntity(employeeRequest);
         return EmployeeMapper.toResponse(employeeRepository.save(employee));
     }
