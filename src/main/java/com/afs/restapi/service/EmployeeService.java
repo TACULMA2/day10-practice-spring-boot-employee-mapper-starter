@@ -60,7 +60,7 @@ public class EmployeeService {
         Page<Employee> employeesInThePage = employeeRepository.findAll(PageRequest
                 .of(pageNumber - 1, pageSize));
         return employeesInThePage.stream().
-                map(employee -> EmployeeMapper.toResponse(employee))
+                map(EmployeeMapper::toResponse)
                 .collect(Collectors.toList());
     }
 
