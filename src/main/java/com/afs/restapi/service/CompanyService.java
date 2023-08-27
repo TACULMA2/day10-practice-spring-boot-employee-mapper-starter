@@ -40,9 +40,13 @@ public class CompanyService {
         return response;
     }
 
-    public List<Company> findByPage(Integer pageNumber, Integer pageSize) {
-        return companyRepository.findAll(PageRequest.of(pageNumber-1, pageSize)).stream()
+    public List<CompanyResponse> findByPage(Integer pageNumber, Integer pageSize) {
+        List<Company> companiesInThePage = companyRepository.findAll(PageRequest.of(pageNumber-1, pageSize))
+                .stream()
                 .collect(Collectors.toList());
+                return companiesInThePage.stream()
+                        .map(company -> CompanyMapper.toResponse(company))
+                        .collect(Collectors.toList());
     }
 
     public void update(Long id, CompanyRequest companyRequest) {
