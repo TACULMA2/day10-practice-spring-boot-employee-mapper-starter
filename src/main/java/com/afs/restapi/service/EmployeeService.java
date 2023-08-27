@@ -30,7 +30,7 @@ public class EmployeeService {
 
     public EmployeeResponse findById(Long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(EmployeeNotFoundException::new);
-                return EmployeeMapper.toResponse(employee);
+        return EmployeeMapper.toResponse(employee);
     }
 
     public void update(Long id, EmployeeRequest employeeRequest) {

@@ -1,8 +1,8 @@
 package com.afs.restapi;
 
-import com.afs.restapi.service.dto.EmployeeRequest;
 import com.afs.restapi.entity.Employee;
 import com.afs.restapi.repository.EmployeeRepository;
+import com.afs.restapi.service.dto.EmployeeRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +33,7 @@ class EmployeeApiTest {
     void setUp() {
         employeeRepository.deleteAll();
     }
+
     @Test
     void should_find_employees() throws Exception {
         Employee bob = employeeRepository.save(getEmployeeBob());
@@ -45,6 +46,7 @@ class EmployeeApiTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].gender").value(bob.getGender()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].salary").doesNotExist());
     }
+
     @Test
     void should_find_employee_by_gender() throws Exception {
         Employee bob = employeeRepository.save(getEmployeeBob());
@@ -78,7 +80,7 @@ class EmployeeApiTest {
 
     @Test
     void should_update_employee_age_and_salary() throws Exception {
-        Employee previousEmployee = employeeRepository.save(new Employee(null,"Json", 22, "Male", 1000));
+        Employee previousEmployee = employeeRepository.save(new Employee(null, "Json", 22, "Male", 1000));
         EmployeeRequest employeeUpdateRequest = new EmployeeRequest("lisi", 24, "Female", 5000, null);
         ObjectMapper objectMapper = new ObjectMapper();
         String updatedEmployeeRequestJson = objectMapper.writeValueAsString(employeeUpdateRequest);

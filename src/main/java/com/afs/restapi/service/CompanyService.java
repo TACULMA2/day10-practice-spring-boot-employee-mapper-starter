@@ -26,9 +26,9 @@ public class CompanyService {
 
     public List<CompanyResponse> findAll() {
         List<Company> companies = companyRepository.findAll();
-                return companies.stream()
-                        .map(company -> CompanyMapper.toResponse(company))
-                        .collect(Collectors.toList());
+        return companies.stream()
+                .map(company -> CompanyMapper.toResponse(company))
+                .collect(Collectors.toList());
     }
 
     public CompanyResponse findById(Long id) {
@@ -41,12 +41,12 @@ public class CompanyService {
     }
 
     public List<CompanyResponse> findByPage(Integer pageNumber, Integer pageSize) {
-        List<Company> companiesInThePage = companyRepository.findAll(PageRequest.of(pageNumber-1, pageSize))
+        List<Company> companiesInThePage = companyRepository.findAll(PageRequest.of(pageNumber - 1, pageSize))
                 .stream()
                 .collect(Collectors.toList());
-                return companiesInThePage.stream()
-                        .map(company -> CompanyMapper.toResponse(company))
-                        .collect(Collectors.toList());
+        return companiesInThePage.stream()
+                .map(company -> CompanyMapper.toResponse(company))
+                .collect(Collectors.toList());
     }
 
     public void update(Long id, CompanyRequest companyRequest) {

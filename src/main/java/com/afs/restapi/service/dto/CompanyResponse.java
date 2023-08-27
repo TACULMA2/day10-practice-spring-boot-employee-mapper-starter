@@ -13,7 +13,9 @@ public class CompanyResponse {
     public Long getId() {
         return id;
     }
-    public CompanyResponse(){}
+
+    public CompanyResponse() {
+    }
 
     public CompanyResponse(Long id, String name) {
         this.id = id;
