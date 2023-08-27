@@ -27,7 +27,7 @@ public class CompanyService {
     public List<CompanyResponse> findAll() {
         List<Company> companies = companyRepository.findAll();
         return companies.stream()
-                .map(company -> CompanyMapper.toResponse(company))
+                .map(CompanyMapper::toResponse)
                 .collect(Collectors.toList());
     }
 
@@ -45,7 +45,7 @@ public class CompanyService {
                 .stream()
                 .collect(Collectors.toList());
         return companiesInThePage.stream()
-                .map(company -> CompanyMapper.toResponse(company))
+                .map(CompanyMapper::toResponse)
                 .collect(Collectors.toList());
     }
 

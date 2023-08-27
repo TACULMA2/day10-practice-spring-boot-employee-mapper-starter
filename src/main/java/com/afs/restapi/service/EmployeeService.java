@@ -24,7 +24,7 @@ public class EmployeeService {
     public List<EmployeeResponse> findAll() {
         List<Employee> employees = employeeRepository.findAll();
         return employees.stream()
-                .map(employee -> EmployeeMapper.toResponse(employee))
+                .map(EmployeeMapper::toResponse)
                 .collect(Collectors.toList());
     }
 
@@ -47,7 +47,7 @@ public class EmployeeService {
 
     public List<EmployeeResponse> findAllByGender(String gender) {
         return employeeRepository.findAllByGender(gender).stream()
-                .map(employee -> EmployeeMapper.toResponse(employee))
+                .map(EmployeeMapper::toResponse)
                 .collect(Collectors.toList());
     }
 
