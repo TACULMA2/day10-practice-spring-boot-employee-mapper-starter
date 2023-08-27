@@ -56,9 +56,12 @@ public class EmployeeService {
         return EmployeeMapper.toResponse(employeeRepository.save(employee));
     }
 
-    public List<Employee> findByPage(Integer pageNumber, Integer pageSize) {
-        Page<Employee> employeesInThePage = employeeRepository.findAll(PageRequest.of(pageNumber-1, pageSize));
-        return employeesInThePage.stream().collect(Collectors.toList());
+    public List<EmployeeResponse> findByPage(Integer pageNumber, Integer pageSize) {
+        Page<Employee> employeesInThePage = employeeRepository.findAll(PageRequest
+                .of(pageNumber - 1, pageSize));
+        return employeesInThePage.stream().
+                map(employee -> EmployeeMapper.toResponse(employee))
+                .collect(Collectors.toList());
     }
 
     public void delete(Long id) {
