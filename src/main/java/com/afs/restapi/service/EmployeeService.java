@@ -21,8 +21,11 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public List<Employee> findAll() {
-        return employeeRepository.findAll();
+    public List<EmployeeResponse> findAll() {
+        List<Employee> employees = employeeRepository.findAll();
+        return employees.stream()
+                .map(employee -> EmployeeMapper.toResponse(employee))
+                .collect(Collectors.toList());
     }
 
     public EmployeeResponse findById(Long id) {
